@@ -25,55 +25,55 @@ export default function Customizer({ theme, setTheme }: CustomizerProps) {
   };
 
   return (
-    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <div className="flex items-center justify-between">
+    <div className="space-y-6 md:space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-3xl font-bold text-slate-900">Identidade Visual</h2>
-          <p className="text-slate-500 mt-1">Personalize a aparência do seu portal escolar em tempo real.</p>
+          <h2 className="text-2xl md:text-3xl font-bold text-slate-900">Identidade Visual</h2>
+          <p className="text-sm md:text-base text-slate-500 mt-1">Personalize a aparência do seu portal escolar.</p>
         </div>
-        <div className="flex gap-3">
+        <div className="flex gap-2 md:gap-3">
           <button 
             onClick={resetTheme}
-            className="flex items-center gap-2 px-4 py-2 border border-slate-200 rounded-brand hover:bg-slate-50 transition-colors"
+            className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-3 md:px-4 py-2 border border-slate-200 rounded-brand hover:bg-slate-50 transition-colors text-sm"
           >
-            <RefreshCw size={18} />
+            <RefreshCw size={16} />
             <span>Resetar</span>
           </button>
-          <button className="flex items-center gap-2 px-4 py-2 bg-brand-primary text-white rounded-brand hover:opacity-90 transition-opacity shadow-md">
-            <Save size={18} />
-            <span>Salvar Alterações</span>
+          <button className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-3 md:px-4 py-2 bg-brand-primary text-white rounded-brand hover:opacity-90 transition-opacity shadow-md text-sm">
+            <Save size={16} />
+            <span>Salvar</span>
           </button>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
         {/* Configuration Panel */}
-        <div className="bg-white p-8 rounded-brand shadow-sm border border-slate-100 space-y-8">
+        <div className="bg-white p-4 md:p-8 rounded-brand shadow-sm border border-slate-100 space-y-6 md:space-y-8">
           <section className="space-y-4">
             <div className="flex items-center gap-2 text-slate-900 font-semibold">
-              <Type size={20} className="text-brand-primary" />
+              <Type size={18} className="text-brand-primary" />
               <h3>Informações Básicas</h3>
             </div>
             <div className="grid grid-cols-1 gap-4">
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1">Nome da Instituição</label>
+                <label className="block text-xs md:text-sm font-medium text-slate-700 mb-1">Nome da Instituição</label>
                 <input 
                   type="text" 
                   value={theme.appName}
                   onChange={(e) => handleChange('appName', e.target.value)}
-                  className="w-full px-4 py-2 border border-slate-200 rounded-brand focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none transition-all"
+                  className="w-full px-4 py-2 border border-slate-200 rounded-brand focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none transition-all text-sm"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1">URL do Logo</label>
+                <label className="block text-xs md:text-sm font-medium text-slate-700 mb-1">URL do Logo</label>
                 <div className="flex gap-2">
                   <input 
                     type="text" 
                     value={theme.logoUrl}
                     onChange={(e) => handleChange('logoUrl', e.target.value)}
-                    className="flex-1 px-4 py-2 border border-slate-200 rounded-brand focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none transition-all"
+                    className="flex-1 px-4 py-2 border border-slate-200 rounded-brand focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none transition-all text-sm"
                   />
-                  <div className="w-10 h-10 rounded-brand border border-slate-200 overflow-hidden bg-slate-50">
+                  <div className="w-10 h-10 rounded-brand border border-slate-200 overflow-hidden bg-slate-50 shrink-0">
                     <img src={theme.logoUrl} alt="Preview" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
                   </div>
                 </div>

@@ -58,21 +58,21 @@ export default function AIAssistant() {
       {/* Toggle Button */}
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-8 right-8 w-14 h-14 bg-brand-primary text-white rounded-full shadow-xl flex items-center justify-center hover:scale-110 transition-transform z-50 group"
+        className="fixed bottom-4 right-4 md:bottom-8 md:right-8 w-12 h-12 md:w-14 md:h-14 bg-brand-primary text-white rounded-full shadow-xl flex items-center justify-center hover:scale-110 transition-transform z-50 group"
       >
-        <Sparkles className={cn("transition-all", isOpen ? "rotate-90" : "")} />
-        <span className="absolute right-full mr-4 bg-slate-900 text-white px-3 py-1 rounded-brand text-xs font-bold opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+        <Sparkles size={20} className={cn("transition-all", isOpen ? "rotate-90" : "")} />
+        <span className="absolute right-full mr-4 bg-slate-900 text-white px-3 py-1 rounded-brand text-xs font-bold opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap hidden md:block">
           Assistente AI
         </span>
       </button>
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-24 right-8 w-96 h-[500px] bg-white rounded-brand shadow-2xl border border-slate-200 flex flex-col z-50 animate-in slide-in-from-bottom-8 duration-300">
-          <div className="p-4 bg-brand-primary text-white rounded-t-brand flex items-center justify-between">
+        <div className="fixed bottom-24 right-4 left-4 md:left-auto md:right-8 md:w-96 h-[450px] md:h-[500px] bg-white rounded-brand shadow-2xl border border-slate-200 flex flex-col z-50 animate-in slide-in-from-bottom-8 duration-300">
+          <div className="p-4 bg-brand-primary text-white rounded-t-brand flex items-center justify-between shrink-0">
             <div className="flex items-center gap-2">
               <Bot size={20} />
-              <span className="font-bold">EduConnect AI</span>
+              <span className="font-bold text-sm md:text-base">EduConnect AI</span>
             </div>
             <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
           </div>

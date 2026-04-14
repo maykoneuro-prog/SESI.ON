@@ -55,29 +55,29 @@ export default function CommunicationModule() {
   }
 
   return (
-    <div className="space-y-8 animate-in fade-in duration-500">
+    <div className="space-y-6 md:space-y-8 animate-in fade-in duration-500">
       <header>
-        <h2 className="text-3xl font-bold text-slate-900">Central de Comunicação</h2>
-        <p className="text-slate-500 mt-1">Envie comunicados segmentados para alunos e responsáveis.</p>
+        <h2 className="text-2xl md:text-3xl font-bold text-slate-900">Central de Comunicação</h2>
+        <p className="text-sm md:text-base text-slate-500 mt-1">Envie comunicados segmentados para alunos e responsáveis.</p>
       </header>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
         {/* Filters Panel */}
         <div className="lg:col-span-1 space-y-6">
-          <div className="bg-white p-6 rounded-brand shadow-sm border border-slate-100">
-            <div className="flex items-center gap-2 font-bold text-slate-900 mb-6">
+          <div className="bg-white p-4 md:p-6 rounded-brand shadow-sm border border-slate-100">
+            <div className="flex items-center gap-2 font-bold text-slate-900 mb-4 md:mb-6">
               <Filter size={20} className="text-brand-primary" />
               <h3>Filtros de Destinatários</h3>
             </div>
 
             <div className="space-y-4">
               <div>
-                <label className="block text-xs font-bold text-slate-500 uppercase mb-2">Público Alvo</label>
+                <label className="block text-[10px] md:text-xs font-bold text-slate-500 uppercase mb-2">Público Alvo</label>
                 <div className="grid grid-cols-2 gap-2">
                   <button 
                     onClick={() => setFilters({...filters, target: 'students'})}
                     className={cn(
-                      "py-2 px-3 text-sm rounded-brand border transition-all",
+                      "py-2 px-2 md:px-3 text-xs md:text-sm rounded-brand border transition-all",
                       filters.target === 'students' ? "bg-brand-primary/10 border-brand-primary text-brand-primary font-bold" : "border-slate-200 text-slate-600 hover:bg-slate-50"
                     )}
                   >
@@ -86,17 +86,17 @@ export default function CommunicationModule() {
                   <button 
                     onClick={() => setFilters({...filters, target: 'parents'})}
                     className={cn(
-                      "py-2 px-3 text-sm rounded-brand border transition-all",
+                      "py-2 px-2 md:px-3 text-xs md:text-sm rounded-brand border transition-all",
                       filters.target === 'parents' ? "bg-brand-primary/10 border-brand-primary text-brand-primary font-bold" : "border-slate-200 text-slate-600 hover:bg-slate-50"
                     )}
                   >
-                    Pais/Responsáveis
+                    Responsáveis
                   </button>
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-slate-500 uppercase mb-2">Segmento</label>
+                <label className="block text-[10px] md:text-xs font-bold text-slate-500 uppercase mb-2">Segmento</label>
                 <select 
                   className="w-full p-2 border border-slate-200 rounded-brand text-sm outline-none focus:ring-2 focus:ring-brand-primary/20"
                   value={filters.segment}
@@ -107,9 +107,9 @@ export default function CommunicationModule() {
                 </select>
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-3 md:gap-4">
                 <div>
-                  <label className="block text-xs font-bold text-slate-500 uppercase mb-2">Série</label>
+                  <label className="block text-[10px] md:text-xs font-bold text-slate-500 uppercase mb-2">Série</label>
                   <select 
                     className="w-full p-2 border border-slate-200 rounded-brand text-sm outline-none"
                     value={filters.grade}
@@ -120,7 +120,7 @@ export default function CommunicationModule() {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-xs font-bold text-slate-500 uppercase mb-2">Turma</label>
+                  <label className="block text-[10px] md:text-xs font-bold text-slate-500 uppercase mb-2">Turma</label>
                   <select 
                     className="w-full p-2 border border-slate-200 rounded-brand text-sm outline-none"
                     value={filters.class}
@@ -132,9 +132,9 @@ export default function CommunicationModule() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-3 md:gap-4">
                 <div>
-                  <label className="block text-xs font-bold text-slate-500 uppercase mb-2">Período</label>
+                  <label className="block text-[10px] md:text-xs font-bold text-slate-500 uppercase mb-2">Período</label>
                   <select 
                     className="w-full p-2 border border-slate-200 rounded-brand text-sm outline-none"
                     value={filters.period}
@@ -145,7 +145,7 @@ export default function CommunicationModule() {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-xs font-bold text-slate-500 uppercase mb-2">Gênero</label>
+                  <label className="block text-[10px] md:text-xs font-bold text-slate-500 uppercase mb-2">Gênero</label>
                   <select 
                     className="w-full p-2 border border-slate-200 rounded-brand text-sm outline-none"
                     value={filters.gender}
@@ -157,67 +157,67 @@ export default function CommunicationModule() {
               </div>
             </div>
 
-            <div className="mt-8 p-4 bg-slate-50 rounded-brand border border-dashed border-slate-200">
-              <div className="flex items-center justify-between text-xs font-bold text-slate-500 mb-2">
+            <div className="mt-6 md:mt-8 p-4 bg-slate-50 rounded-brand border border-dashed border-slate-200">
+              <div className="flex items-center justify-between text-[10px] md:text-xs font-bold text-slate-500 mb-2">
                 <span>ESTIMATIVA DE ALCANCE</span>
                 <Users size={14} />
               </div>
-              <p className="text-2xl font-bold text-slate-900">428 <span className="text-sm font-normal text-slate-500">pessoas</span></p>
+              <p className="text-xl md:text-2xl font-bold text-slate-900">428 <span className="text-xs md:text-sm font-normal text-slate-500">pessoas</span></p>
             </div>
           </div>
         </div>
 
         {/* Message Editor */}
         <div className="lg:col-span-2 space-y-6">
-          <div className="bg-white p-8 rounded-brand shadow-sm border border-slate-100 flex flex-col h-full">
-            <div className="flex items-center justify-between mb-6">
-              <h3 className="font-bold text-slate-900 text-lg">Compor Mensagem</h3>
+          <div className="bg-white p-4 md:p-8 rounded-brand shadow-sm border border-slate-100 flex flex-col h-full">
+            <div className="flex items-center justify-between mb-4 md:mb-6">
+              <h3 className="font-bold text-slate-900 text-base md:text-lg">Compor Mensagem</h3>
               <div className="flex gap-2">
                 <span className="px-2 py-1 bg-brand-primary/10 text-brand-primary text-[10px] font-bold rounded uppercase">Rascunho</span>
               </div>
             </div>
 
-            <div className="space-y-6 flex-1">
+            <div className="space-y-4 md:space-y-6 flex-1">
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-2">Título do Comunicado</label>
                 <input 
                   type="text" 
-                  placeholder="Ex: Reunião de Pais - 2º Bimestre"
-                  className="w-full px-4 py-3 border border-slate-200 rounded-brand focus:ring-2 focus:ring-brand-primary/20 outline-none transition-all"
+                  placeholder="Ex: Reunião de Pais"
+                  className="w-full px-4 py-2 md:py-3 border border-slate-200 rounded-brand focus:ring-2 focus:ring-brand-primary/20 outline-none transition-all text-sm md:text-base"
                   value={message.title}
                   onChange={(e) => setMessage({...message, title: e.target.value})}
                 />
               </div>
 
-              <div className="flex-1 flex flex-col min-h-[300px]">
+              <div className="flex-1 flex flex-col min-h-[200px] md:min-h-[300px]">
                 <label className="block text-sm font-medium text-slate-700 mb-2">Conteúdo da Mensagem</label>
                 <textarea 
                   placeholder="Digite aqui o comunicado oficial..."
-                  className="flex-1 w-full px-4 py-4 border border-slate-200 rounded-brand focus:ring-2 focus:ring-brand-primary/20 outline-none transition-all resize-none"
+                  className="flex-1 w-full px-4 py-3 md:py-4 border border-slate-200 rounded-brand focus:ring-2 focus:ring-brand-primary/20 outline-none transition-all resize-none text-sm md:text-base"
                   value={message.content}
                   onChange={(e) => setMessage({...message, content: e.target.value})}
                 ></textarea>
               </div>
 
-              <div className="p-4 bg-amber-50 border border-amber-100 rounded-brand flex gap-3">
-                <AlertCircle className="text-amber-600 shrink-0" size={20} />
-                <p className="text-xs text-amber-800 leading-relaxed">
-                  Esta mensagem será enviada via Notificação Push no App e E-mail para todos os usuários que atendem aos critérios de filtro selecionados ao lado.
+              <div className="p-3 md:p-4 bg-amber-50 border border-amber-100 rounded-brand flex gap-3">
+                <AlertCircle className="text-amber-600 shrink-0" size={18} />
+                <p className="text-[10px] md:text-xs text-amber-800 leading-relaxed">
+                  Esta mensagem será enviada via Notificação Push e E-mail para os usuários selecionados.
                 </p>
               </div>
             </div>
 
-            <div className="mt-8 flex justify-end gap-3">
-              <button className="px-6 py-2 text-slate-600 font-bold hover:bg-slate-50 rounded-brand transition-colors">
+            <div className="mt-6 md:mt-8 flex justify-end gap-3">
+              <button className="px-4 md:px-6 py-2 text-slate-600 font-bold hover:bg-slate-50 rounded-brand transition-colors text-sm md:text-base">
                 Cancelar
               </button>
               <button 
                 onClick={handleSend}
                 disabled={!message.title || !message.content || isSending}
-                className="px-8 py-2 bg-brand-primary text-white rounded-brand font-bold shadow-lg shadow-brand-primary/20 hover:opacity-90 transition-all flex items-center gap-2 disabled:opacity-50"
+                className="px-6 md:px-8 py-2 bg-brand-primary text-white rounded-brand font-bold shadow-lg shadow-brand-primary/20 hover:opacity-90 transition-all flex items-center gap-2 disabled:opacity-50 text-sm md:text-base"
               >
                 {isSending ? <Loader2 className="animate-spin" size={18} /> : <Send size={18} />}
-                <span>{isSending ? 'Enviando...' : 'Enviar Comunicado'}</span>
+                <span>{isSending ? 'Enviando...' : 'Enviar'}</span>
               </button>
             </div>
           </div>

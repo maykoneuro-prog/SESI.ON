@@ -18,24 +18,24 @@ export default function Dashboard() {
   ];
 
   return (
-    <div className="space-y-8 animate-in fade-in duration-500">
+    <div className="space-y-6 md:space-y-8 animate-in fade-in duration-500">
       <header>
-        <h2 className="text-3xl font-bold text-slate-900">Bem-vindo, Admin</h2>
-        <p className="text-slate-500 mt-1">Aqui está o que está acontecendo na sua escola hoje.</p>
+        <h2 className="text-2xl md:text-3xl font-bold text-slate-900">Bem-vindo, Admin</h2>
+        <p className="text-sm md:text-base text-slate-500 mt-1">Aqui está o que está acontecendo na sua escola hoje.</p>
       </header>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
         {stats.map((stat, i) => (
-          <div key={i} className="bg-white p-6 rounded-brand shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
-            <div className="flex items-center justify-between mb-4">
-              <div className={cn("p-3 rounded-brand", stat.bg)}>
-                <stat.icon className={stat.color} size={24} />
+          <div key={i} className="bg-white p-4 md:p-6 rounded-brand shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+            <div className="flex items-center justify-between mb-3 md:mb-4">
+              <div className={cn("p-2 md:p-3 rounded-brand", stat.bg)}>
+                <stat.icon className={stat.color} size={20} />
               </div>
-              <span className="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded-full">+2.5%</span>
+              <span className="text-[10px] md:text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded-full">+2.5%</span>
             </div>
-            <p className="text-slate-500 text-sm font-medium">{stat.label}</p>
-            <h3 className="text-2xl font-bold text-slate-900 mt-1">{stat.value}</h3>
+            <p className="text-slate-500 text-xs md:text-sm font-medium">{stat.label}</p>
+            <h3 className="text-xl md:text-2xl font-bold text-slate-900 mt-1">{stat.value}</h3>
           </div>
         ))}
       </div>

@@ -15,6 +15,7 @@ import { AppTheme, DEFAULT_THEME, UserRole, User } from './types';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('dashboard');
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [user, setUser] = useState<User | null>(() => {
     try {
       const saved = localStorage.getItem('educonnect-user');
@@ -24,6 +25,7 @@ export default function App() {
       return null;
     }
   });
+
   const [theme, setTheme] = useState<AppTheme>(() => {
     try {
       const saved = localStorage.getItem('educonnect-theme');
@@ -33,6 +35,11 @@ export default function App() {
       return DEFAULT_THEME;
     }
   });
+
+  // Close sidebar on mobile when tab changes
+  useEffect(() => {
+    setSidebarOpen(false);
+  }, [activeTab]);
 
   // Apply theme variables to CSS
   useEffect(() => {
@@ -71,7 +78,7 @@ export default function App() {
         return user.role === 'secretaria' || user.role === 'admin' ? <CommunicationModule /> : <Dashboard />;
       case 'students':
         return (
-          <div className="p-12 text-center">
+          <div className="p-4 md:p-12 text-center">
             <h2 className="text-2xl font-bold text-slate-900">Módulo de Alunos</h2>
             <p className="text-slate-500 mt-2">Esta funcionalidade está sendo customizada para sua infraestrutura.</p>
           </div>
@@ -82,23 +89,25 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex bg-slate-50">
+    <div className="min-h-screen flex bg-slate-50 overflow-x-hidden">
       <Sidebar 
         activeTab={activeTab} 
         setActiveTab={setActiveTab} 
         appName={theme.appName}
         logoUrl={theme.logoUrl}
         userRole={user.role}
+        isOpen={sidebarOpen}
+        setIsOpen={setSidebarOpen}
       />
       
-      <div className="flex-1 ml-64 flex flex-col min-h-screen">
-        <Header user={user} onLogout={handleLogout} />
+      <div className="flex-1 flex flex-col min-h-screen w-full md:ml-64 transition-all duration-300">
+        <Header user={user} onLogout={handleLogout} toggleSidebar={() => setSidebarOpen(!sidebarOpen)} />
         
-        <main className="flex-1 p-8 max-w-7xl w-full mx-auto">
+        <main className="flex-1 p-4 md:p-8 max-w-7xl w-full mx-auto">
           {renderContent()}
         </main>
         
-        <footer className="p-8 text-center text-slate-400 text-sm border-t border-slate-200 bg-white">
+        <footer className="p-6 md:p-8 text-center text-slate-400 text-xs md:sm border-t border-slate-200 bg-white">
           <p>&copy; 2026 {theme.appName}. Todos os direitos reservados. Powered by Recifesolucoes.online</p>
         </footer>
       </div>
