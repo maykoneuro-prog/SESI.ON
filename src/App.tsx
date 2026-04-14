@@ -16,12 +16,22 @@ import { AppTheme, DEFAULT_THEME, UserRole, User } from './types';
 export default function App() {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [user, setUser] = useState<User | null>(() => {
-    const saved = localStorage.getItem('educonnect-user');
-    return saved ? JSON.parse(saved) : null;
+    try {
+      const saved = localStorage.getItem('educonnect-user');
+      return saved ? JSON.parse(saved) : null;
+    } catch (e) {
+      console.error("Failed to parse user from localStorage", e);
+      return null;
+    }
   });
   const [theme, setTheme] = useState<AppTheme>(() => {
-    const saved = localStorage.getItem('educonnect-theme');
-    return saved ? JSON.parse(saved) : DEFAULT_THEME;
+    try {
+      const saved = localStorage.getItem('educonnect-theme');
+      return saved ? JSON.parse(saved) : DEFAULT_THEME;
+    } catch (e) {
+      console.error("Failed to parse theme from localStorage", e);
+      return DEFAULT_THEME;
+    }
   });
 
   // Apply theme variables to CSS

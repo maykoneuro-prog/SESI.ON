@@ -1,20 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { GoogleGenAI } from "@google/genai";
 import { Sparkles, Send, Bot, User, Loader2 } from 'lucide-react';
 import { cn } from '../lib/utils';
-
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
 export default function AIAssistant() {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState<{ role: 'user' | 'ai', content: string }[]>([
-    { role: 'ai', content: 'Olá! Sou seu assistente inteligente do EduConnect. Como posso ajudar com a gestão escolar hoje?' }
+    { role: 'ai', content: 'Olá! Sou seu assistente inteligente do SESI.ON. Como posso ajudar com a gestão escolar hoje?' }
   ]);
   const [isLoading, setIsLoading] = useState(false);
 
+  // Lazy initialize AI to prevent crash if key is missing
+  const ai = useMemo(() => {
+    try {
+      const apiKey = process.env.GEMINI_API_KEY;
+      if (!apiKey) return null;
+      return new GoogleGenAI({ apiKey });
+    } catch (e) {
+      console.warn("AI initialization failed:", e);
+      return null;
+    }
+  }, []);
+
   const handleSend = async () => {
     if (!input.trim() || isLoading) return;
+    if (!ai) {
+      setMessages(prev => [...prev, { role: 'ai', content: "O assistente AI não está configurado corretamente (chave de API ausente)." }]);
+      return;
+    }
 
     const userMessage = input.trim();
     setInput('');
@@ -22,19 +36,18 @@ export default function AIAssistant() {
     setIsLoading(true);
 
     try {
-      const response = await ai.models.generateContent({
-        model: "gemini-3-flash-preview",
-        contents: userMessage,
-        config: {
-          systemInstruction: "Você é um assistente especializado em gestão escolar para a plataforma EduConnect. Ajude diretores e professores com dúvidas sobre frequência, notas, comunicação com pais e organização pedagógica. Seja profissional, prestativo e conciso.",
-        }
+      const model = ai.getGenerativeModel({
+        model: "gemini-1.5-flash",
+        systemInstruction: "Você é um assistente especializado em gestão escolar para a plataforma SESI.ON. Ajude diretores e professores com dúvidas sobre frequência, notas, comunicação com pais e organização pedagógica. Seja profissional, prestativo e conciso.",
       });
 
-      const aiResponse = response.text || "Desculpe, não consegui processar sua solicitação.";
+      const result = await model.generateContent(userMessage);
+      const response = await result.response;
+      const aiResponse = response.text() || "Desculpe, não consegui processar sua solicitação.";
       setMessages(prev => [...prev, { role: 'ai', content: aiResponse }]);
     } catch (error) {
       console.error("AI Error:", error);
-      setMessages(prev => [...prev, { role: 'ai', content: "Houve um erro ao processar sua pergunta. Por favor, tente novamente." }]);
+      setMessages(prev => [...prev, { role: 'ai', content: "Houve um erro ao processar sua pergunta. Por favor, verifique se a chave de API foi configurada corretamente." }]);
     } finally {
       setIsLoading(false);
     }
