@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-primary: var(--primary-color);
+  --color-brand-secondary: var(--secondary-color);
+  --color-brand-accent: var(--accent-color);
+  --radius-brand: var(--border-radius);
+}
+
+:root {
+  --primary-color: #3b82f6;
+  --secondary-color: #1e293b;
+  --accent-color: #f59e0b;
+  --border-radius: 0.5rem;
+}
+
+body {
+  @apply bg-slate-50 text-slate-900;
+  font-family: var(--font-family, Inter, sans-serif);
+}

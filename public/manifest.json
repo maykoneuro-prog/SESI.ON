@@ -1,0 +1,21 @@
+{
+  "short_name": "EduConnect",
+  "name": "EduConnect Portal Escolar",
+  "icons": [
+    {
+      "src": "https://picsum.photos/seed/edu/192/192",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "https://picsum.photos/seed/edu/512/512",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#1e293b",
+  "display": "standalone",
+  "theme_color": "#3b82f6",
+  "description": "Portal de gestão escolar customizável EduConnect."
+}
