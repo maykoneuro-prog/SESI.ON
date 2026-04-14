@@ -14,13 +14,13 @@ export default function Customizer({ theme, setTheme }: CustomizerProps) {
 
   const resetTheme = () => {
     setTheme({
-      primaryColor: '#3b82f6',
+      primaryColor: '#0B3C88',
       secondaryColor: '#1e293b',
       accentColor: '#f59e0b',
       borderRadius: '0.5rem',
       fontFamily: 'Inter, sans-serif',
-      appName: 'EduConnect',
-      logoUrl: 'https://picsum.photos/seed/edu/100/100',
+      appName: 'SESI.ON',
+      logoUrl: 'https://i.imgur.com/RjPhZLy_d.png?maxwidth=520&shape=thumb&fidelity=high',
     });
   };
 

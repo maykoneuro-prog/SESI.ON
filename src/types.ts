@@ -19,13 +19,13 @@ export interface AppTheme {
 }
 
 export const DEFAULT_THEME: AppTheme = {
-  primaryColor: '#3b82f6', // blue-500
+  primaryColor: '#0B3C88', // SESI Blue
   secondaryColor: '#1e293b', // slate-800
   accentColor: '#f59e0b', // amber-500
   borderRadius: '0.5rem',
   fontFamily: 'Inter, sans-serif',
-  appName: 'EduConnect',
-  logoUrl: 'https://picsum.photos/seed/edu/100/100',
+  appName: 'SESI.ON',
+  logoUrl: 'https://i.imgur.com/RjPhZLy_d.png?maxwidth=520&shape=thumb&fidelity=high',
 };
 
 export interface Student {
